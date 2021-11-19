@@ -8,8 +8,9 @@
 *.log
 *.log.*
 *.sig
+*.pyc
 
 pkg/
 src/
 __pycache__/
-nvim/plugged/
+nvim/.config/nvim/plugged/*
