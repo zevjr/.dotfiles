@@ -12,3 +12,4 @@
 pkg/
 src/
 __pycache__/
+nvim/plugged/
