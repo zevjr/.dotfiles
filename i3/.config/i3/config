@@ -1,6 +1,7 @@
 exec_always picom -f
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id autotiling
+exec_always --no-startup-id source $HOME/.secrets.sh
 
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id picom  -b --config $HOME/.config/picom/picom.conf
