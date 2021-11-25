@@ -14,3 +14,4 @@ pkg/
 src/
 __pycache__/
 nvim/.config/nvim/plugged/*
+polybar/.config/polybar/scripts/weather/secrets.py

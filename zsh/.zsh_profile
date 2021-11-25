@@ -1,57 +1,54 @@
 VIM="nvim"
 export GIT_EDITOR=$VIM
 
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export XDG_CONFIG_HOME=$HOME/.config
+
 export GOPATH=$HOME/go
-export PYTHONBREAKPOINT="ipdb.set_trace"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export BAT_THEME="TwoDark"
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export XDG_CONFIG_HOME=$HOME/.config
+export PYTHONBREAKPOINT="ipdb.set_trace"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_DEFAULT_OPTS="--extended --height 40% --layout=reverse-list --border"
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
 
-
-source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "/home/zejr/.oh-my-zsh/custom/plugins/fzf-zsh"
 source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "/home/zejr/.oh-my-zsh/custom/plugins/fzf-zsh"
-# source "/usr/share/nvm/init-nvm.sh"
+source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-fpath=( "$fpath[@]" "$HOME/.config/znt/zsh-navigation-tools" )
-setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
-zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
 zle -N znt-history-widget
-
-autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-list-input n-options n-panelize n-help
-autoload znt-usetty-wrapper znt-history-widget znt-cd-widget znt-kill-widget
-
-bindkey '^R' znt-history-widget
 bindkey -s '^n' 'fzf_nvim \n' 
+bindkey '^R' znt-history-widget
+setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
+fpath=( "$fpath[@]" "$HOME/.config/znt/zsh-navigation-tools" )
+zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
 bindkey -s '^f' 'cd $(fd . "/home/zejr" --type directory | fzf )\n'
+autoload znt-usetty-wrapper znt-history-widget znt-cd-widget znt-kill-widget
+autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-list-input n-options n-panelize n-help
 
 
-alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
-alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
-alias ls="ls --color"
-alias gph="git push origin"
-# alias gpl="git fetch && git pull origin"
-alias joplin="~/.joplin-bin/bin/joplin"
-alias ol="GIT_SSH_COMMAND='ssh -i /home/zejr/.ssh/id_rsa_olist'"
-alias yarn="/usr/local/lib/node_modules/yarn/bin/yarn"
-alias pg_start="sudo service postgresql start && sudo update-rc.d postgresql enable"
-alias poetry="~/.poetry/bin/poetry"
-alias calc="speedcrunch"
-alias vpn="sudo openvpn  --config ~/Documentos/certifications/OlistVPN.ovpn"
-alias cat="bat --paging=never"
-alias archi="./Downloads/Archi/Archi &"
 alias mv="mv -i"
-alias globo="sudo sh ~/Downloads/GlobalProtect/global_protect/install.sh"
-alias ospt="./Works/OpenSource/spotifyd/target/release/spotifyd && spt"
-alias cspt="kill -9 $(pidof spotifyd)"
-# alias xclip="xclip -sel clip"
+alias ls="ls --color"
+alias calc="speedcrunch"
+alias gph="git push origin"
+alias cat="bat --paging=never"
 alias xclip='xclip -selection c'
-alias senha="echo $SENHA_MESTRA xclip && keepassxc &"
+alias cspt="kill -9 $(pidof spotifyd)"
+alias joplin="~/.joplin-bin/bin/joplin"
+alias archi="./Downloads/Archi/Archi &"
+alias globo="sudo sh ~/global_protect/install.sh"
+alias yarn="/usr/local/lib/node_modules/yarn/bin/yarn"
+alias ol="GIT_SSH_COMMAND='ssh -i /home/zejr/.ssh/id_rsa_olist'"
+alias senha="echo '$SENHA_MESTRA' | tr -d '\n' | xclip && keepassxc &"
+alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
+alias ospt="./Works/OpenSource/spotifyd/target/release/spotifyd && spt"
+alias vpn="sudo openvpn  --config ~/Documentos/certifications/OlistVPN.ovpn"
+alias pg_start="sudo service postgresql start && sudo update-rc.d postgresql enable"
+alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
 
 auth(){
     echo "-> 1) stg\n-> 2) prd"
@@ -65,6 +62,21 @@ auth(){
         echo "conectado a PRODUCAO"
     else
         auth
+    fi
+}
+
+audio(){
+    echo "-> 1) JBL\n-> 2) Headset"
+    read OPCAO
+
+    if test "$OPCAO" = 1; then
+        pacmd set-default-sink alsa_output.plughw_0_0
+        echo "Conectado a JBL"
+    elif test "$OPCAO" = 2; then
+        pacmd set-default-sink alsa_output.usb-Logitech_G635_Gaming_Headset_00000000-00.analog-stereo
+        echo "Conectado ao Headset"
+    else
+        echo "Opcao invalida"
     fi
 }
 

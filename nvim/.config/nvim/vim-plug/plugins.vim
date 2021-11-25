@@ -11,8 +11,15 @@ endif
 
 
 call plug#begin('~/.config/nvim/plugged')
+
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+  Plug 'nvim-lua/plenary.nvim' " don't forget to add this one if you don't have it yet!
+  Plug 'ThePrimeagen/harpoon'
+
+
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug']}
+  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
   Plug 'Yggdroot/indentLine'
   Plug 'mhinz/vim-startify'
   Plug 'tpope/vim-commentary'

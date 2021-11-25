@@ -1,7 +1,7 @@
 exec_always picom -f
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id source $HOME/.secrets.sh
+exec_always --no-startup-id source $HOME/.zshrc
 
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id picom  -b --config $HOME/.config/picom/picom.conf
@@ -78,8 +78,10 @@ bindsym $mod+Shift+8	move container to workspace $ws8
 bindsym $mod+Shift+9	move container to workspace $ws9
 bindsym $mod+Shift+0	move container to workspace $ws10
 
-
-bindsym $mod+Return exec alacritty
+# bindsym $mod+Return exec lxterminal -e tmux
+# bindsym $mod+Return exec alacritty
+# bindsym $mod+Return exec guake -e tmux
+bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+h focus left
 bindsym $mod+k focus up
@@ -113,7 +115,7 @@ bindsym $mod+Shift+a exec i3lock -c 000000 -p win -e -f
 bindsym $mod+Shift+q kill
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

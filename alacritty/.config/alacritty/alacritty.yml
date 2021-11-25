@@ -1,13 +1,13 @@
 font:
-  size: 14.0
+  size: 12.0
   normal:
-    family: Hack Nerd Font Mono
+    family: Hermit
     style: Regular
   bold:
-    family: Hack Nerd Font Mono
+    family: Hermit
     style: Bold
   italic:
-    family: Hack Nerd Font Mono
+    family: Hermit
     style: Italic
   glyph_offset:
     y: 1
@@ -71,6 +71,10 @@ cursor:
 
 shell:
   program: /usr/bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
 
 key_bindings:
   # remove the line below!

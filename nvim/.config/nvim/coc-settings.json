@@ -117,7 +117,7 @@
 
   // explorer
   "explorer.quitOnOpen": true,
-  "explorer.file.revealWhenOpen": true,
+  "explorer.file.reveal.WhenOpen": true,
   "explorer.position": "floating",
   "explorer.filename.colored.enable": true,
   "explorer.floating.position": "center",

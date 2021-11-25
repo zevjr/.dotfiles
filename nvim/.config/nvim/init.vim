@@ -13,6 +13,7 @@ filetype plugin indent on
 set background=dark                        " Set global background to dark
 colorscheme gruvbox
 let base16colorspace=256
+set guifont=DroidSansMono\ Nerd\ Font\ 12
 
 let g:gruvbox_contrast_dark = 'hard'       " Set gruvbox bg to real dark
 let g:gruvbox_material_background = 'hard' " Same but for -material alt
@@ -90,12 +91,9 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --hidden -g ""'
 let g:ackprg = 'ag --vimgrep'
 
 
+function! SortLines() range
+    execute a:firstline . "," . a:lastline . 's/^\(.*\)$/\=strdisplaywidth( submatch(0) ) . " " . submatch(0)/'
+    execute a:firstline . "," . a:lastline . 'sort n'
+    execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
+endfunction
 
-" let $FZF_DEFAULT_OPTS='--reverse'
-" let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-" if executable('rg')
-"   let g:rg_derive_root='true'
-"   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-"   set grepprg=rg\ --vimgrep
-"   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-" endif
