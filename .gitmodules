@@ -1,1 +1,3 @@
 
+[submodule "tree-sitter/.config/tree-sitter"]
+	url = https://github.com/Azganoth/tree-sitter-lua.git
