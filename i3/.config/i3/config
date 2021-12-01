@@ -6,6 +6,7 @@ exec_always --no-startup-id source $HOME/.zshrc
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id picom  -b --config $HOME/.config/picom/picom.conf
 exec --no-startup-id nm-applet
+exec x--no-startup-id randr --output HDMI-0 --rotate right --auto
 
 for_window [class="Yad" title="yad-calendar"] floating enable
 

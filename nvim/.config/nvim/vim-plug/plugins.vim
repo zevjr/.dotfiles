@@ -12,6 +12,9 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
+  Plug 'antonk52/bad-practices.nvim'
+  Plug 'rcarriga/nvim-notify'
+
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   Plug 'nvim-lua/plenary.nvim' " don't forget to add this one if you don't have it yet!
