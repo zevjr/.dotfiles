@@ -96,3 +96,7 @@ function! SortLines() range
     execute a:firstline . "," . a:lastline . 'sort n'
     execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
 endfunction
+
+lua <<EOF
+ print("Seja bem-vindo ao Neovim!")
+EOF

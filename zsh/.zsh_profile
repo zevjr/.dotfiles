@@ -42,11 +42,11 @@ alias joplin="~/.joplin-bin/bin/joplin"
 alias archi="./Downloads/Archi/Archi &"
 alias globo="sudo sh ~/global_protect/install.sh"
 alias yarn="/usr/local/lib/node_modules/yarn/bin/yarn"
-alias ol="GIT_SSH_COMMAND='ssh -i /home/zejr/.ssh/id_rsa_olist'"
+# alias ol="GIT_SSH_COMMAND='ssh -i /home/zejr/.ssh/id_rsa_olist'"
 alias senha="echo '$SENHA_MESTRA' | tr -d '\n' | xclip && keepassxc &"
 alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
 alias ospt="./Works/OpenSource/spotifyd/target/release/spotifyd && spt"
-alias vpn="sudo openvpn  --config ~/Documentos/certifications/OlistVPN.ovpn"
+# alias vpn="sudo openvpn  --config ~/Documentos/certifications/OlistVPN.ovpn"
 alias pg_start="sudo service postgresql start && sudo update-rc.d postgresql enable"
 alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
 
@@ -94,12 +94,13 @@ gpl(){
     fi
 }
 
-olist () {
-    export AWS_ROLE_ARN=$AWS_ROLE_ARN_PROD
-}
-olist-staging () {
-    export AWS_ROLE_ARN=$AWS_ROLE_ARN_STAGING
-}
+# olist () {
+#     export AWS_ROLE_ARN=$AWS_ROLE_ARN_PROD
+# }
+# olist-staging () {
+#     export AWS_ROLE_ARN=$AWS_ROLE_ARN_STAGING
+# }
+
 validateYaml() {
     python -c 'import yaml,sys;yaml.safe_load(sys.stdin)' < $1
 }
