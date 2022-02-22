@@ -1,7 +1,8 @@
 #!/bin/bash
 #              alts
 #echo " Menu"
-echo " Manjaro |  zejr"
+#echo " Manjaro"
+echo " Ubuntu |  zejr"
 #echo " Gentoo"
 #echo " Linux Mint"
 #echo " Ubuntu"

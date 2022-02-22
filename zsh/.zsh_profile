@@ -1,14 +1,17 @@
 VIM="nvim"
-export GIT_EDITOR=$VIM
+NPM_PACKAGES="${HOME}/.npm-packages"
 
-
-export GOPATH=$HOME/go
+export GIT_EDITOR="$VIM"
+export PYENV_ROOT="${HOME}/.pyenv"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+export GOPATH="$HOME/go"
 export BAT_THEME="TwoDark"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_HOME="$HOME/.config"
 export PYTHONBREAKPOINT="ipdb.set_trace"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -19,20 +22,24 @@ source "/home/zejr/.oh-my-zsh/custom/plugins/fzf-zsh"
 source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh
 
-zle -N znt-history-widget
+
 bindkey -s '^n' 'fzf_nvim \n' 
+bindkey -s '^f' 'cd $(fd . "/home/zejr" --type directory | fzf )\n'
+zle -N znt-history-widget
 bindkey '^R' znt-history-widget
 setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
 fpath=( "$fpath[@]" "$HOME/.config/znt/zsh-navigation-tools" )
 zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
-bindkey -s '^f' 'cd $(fd . "/home/zejr" --type directory | fzf )\n'
 autoload znt-usetty-wrapper znt-history-widget znt-cd-widget znt-kill-widget
 autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-list-input n-options n-panelize n-help
 
 
+alias rr="source ~/.zshrc"
+alias ls="exa --icons -s type"
+alias fd="fdfind"
 alias mv="mv -i"
-alias ls="ls --color"
 alias calc="speedcrunch"
 alias gph="git push origin"
 alias cat="bat --paging=never"
@@ -41,70 +48,20 @@ alias cspt="kill -9 $(pidof spotifyd)"
 alias joplin="~/.joplin-bin/bin/joplin"
 alias archi="./Downloads/Archi/Archi &"
 alias globo="sudo sh ~/global_protect/install.sh"
-alias yarn="/usr/local/lib/node_modules/yarn/bin/yarn"
-# alias ol="GIT_SSH_COMMAND='ssh -i /home/zejr/.ssh/id_rsa_olist'"
+alias self="GIT_SSH_COMMAND='ssh -i /home/zejr/.ssh/self'"
 alias senha="echo '$SENHA_MESTRA' | tr -d '\n' | xclip && keepassxc &"
 alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
 alias ospt="./Works/OpenSource/spotifyd/target/release/spotifyd && spt"
-# alias vpn="sudo openvpn  --config ~/Documentos/certifications/OlistVPN.ovpn"
+alias vpn="sudo openvpn  --config /home/zejr/Documentos/certifications/facily.ovpn"
 alias pg_start="sudo service postgresql start && sudo update-rc.d postgresql enable"
-alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
+# alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
 
-auth(){
-    echo "-> 1) stg\n-> 2) prd"
-    read OPCAO
-
-    if test "$OPCAO" = 2; then
-        olist && echo "$SENHA_GOOGLE_AUTH" | aws-google-auth -q
-        echo "conectado a PRODUCAO"
-    elif test "$OPCAO" = 1; then
-        olist-staging && echo "$SENHA_GOOGLE_AUTH" | aws-google-auth -q
-        echo "conectado a PRODUCAO"
-    else
-        auth
-    fi
-}
-
-audio(){
-    echo "-> 1) JBL\n-> 2) Headset"
-    read OPCAO
-
-    if test "$OPCAO" = 1; then
-        pacmd set-default-sink alsa_output.plughw_0_0
-        pacmd set-default-source alsa_input.usb-046d_Logitech_Webcam_C925e_62AC50BF-02.analog-stereo
-        echo "Conectado a JBL"
-    elif test "$OPCAO" = 2; then
-        pacmd set-default-sink alsa_output.usb-Logitech_G635_Gaming_Headset_00000000-00.analog-stereo
-        pacmd set-default-source alsa_output.usb-Logitech_G635_Gaming_Headset_00000000-00.analog-stereo.monitor
-        echo "Conectado ao Headset"
-    else
-        echo "Opcao invalida"
-    fi
-}
 
 fzf_nvim(){
     nvim $(ag --files-with-matches --hidden --path-to-ignore ~/.ignore -g "" | fzf --preview "bat --color=always --style=numbers {}")
 }
 
 gpl(){
-    if test "$1" = "olist"; then
-        ol git fetch && ol git pull origin $2
-    else
-        git fetch && git pull origin $1
-    fi
+    git fetch && git pull origin $1
 }
-
-# olist () {
-#     export AWS_ROLE_ARN=$AWS_ROLE_ARN_PROD
-# }
-# olist-staging () {
-#     export AWS_ROLE_ARN=$AWS_ROLE_ARN_STAGING
-# }
-
-validateYaml() {
-    python -c 'import yaml,sys;yaml.safe_load(sys.stdin)' < $1
-}
-
-catr() {
-    tail -n "+$1" $3 | head -n "$(($2 - $1 + 1))"
-}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

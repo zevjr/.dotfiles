@@ -1,12 +1,16 @@
+exec xrandr --output eDP-1 --off
+exec xrandr --output DP-1 --auto --right-of HDMI-1 --rotate right
+
 exec_always picom -f
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id source $HOME/.zshrc
+
+exec_always --no-startup-id source $HOME/.dotfiles/zsh/.zshrc
 
 exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id compton
 exec_always --no-startup-id picom  -b --config $HOME/.config/picom/picom.conf
 exec --no-startup-id nm-applet
-exec x--no-startup-id randr --output HDMI-0 --rotate right --auto
 
 for_window [class="Yad" title="yad-calendar"] floating enable
 
@@ -53,6 +57,8 @@ for_window [title=".*Emulator.*"] floating enable
 # start program launcher
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -b -i'
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+z exec --no-startup-id xrandr --output eDP-1 --auto --right-of HDMI-1 --right-of DP-1
+
 
 
 # switch to workspace

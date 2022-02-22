@@ -74,7 +74,7 @@ shell:
   args:
     - -l
     - -c
-    - "tmux attach || tmux"
+    - "tmux"
 
 key_bindings:
   # remove the line below!

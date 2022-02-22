@@ -11,9 +11,23 @@ nnoremap <C-\> :CocCommand explorer <CR>
 nnoremap <C-i> :Isort <CR>
 nnoremap <C-I> <cmd>call Black()<CR>
 
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>
+
+nnoremap <silent> Q <nop>
+nnoremap <silent> <Right> <nop>
+nnoremap <silent> <Left> <nop>
+nnoremap <silent> <Up> <nop>
+nnoremap <silent> <Down> <nop>
+vnoremap <silent> <Right> <nop>
+vnoremap <silent> <Left> <nop>
+vnoremap <silent> <Up> <nop>
+vnoremap <silent> <Down> <nop>
+nnoremap <silent> <C-z> <nop>
+
+nnoremap <leader>v :BufstopFast<cr>
+nnoremap <leader>V :Bufstop<cr>
 nnoremap <leader>b :Git blame<cr>
-nnoremap <leader>l :bn<cr>
-nnoremap <leader>h :bp<cr>
 nnoremap <leader>t :t.<cr>
 nnoremap <leader>d dd
 nnoremap <leader>s :w! <cr>
@@ -25,6 +39,7 @@ nnoremap <leader>+ :vertical resize +5<CR>
 nnoremap <leader>- :vertical resize -5<CR>
 nnoremap <leader>rp :resize 100<CR>
 nnoremap <leader>y "+y
+vnoremap <leader>y "+y
 nnoremap <leader>p "*p
 nnoremap <leader>Y y$
 nnoremap <leader>d "_d

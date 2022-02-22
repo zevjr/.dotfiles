@@ -3,8 +3,10 @@
 
 BAR_HEIGHT=22  # polybar height
 BORDER_SIZE=1  # border size from your wm settings
-YAD_WIDTH=222  # 222 is minimum possible value
-YAD_HEIGHT=193 # 193 is minimum possible value
+YAD_WIDTH=552  # 222 is minimum possible value
+YAD_HEIGHT=253 # 193 is minimum possible value
+DEFAULT_POS_X=2250
+DEFAULT_POS_Y=40
 DATE="$(date +"%a, %d %B %H:%M")"
 
 case "$1" in
@@ -28,13 +30,15 @@ case "$1" in
     # Y
     if [ "$Y" -gt "$((HEIGHT / 2))" ]; then #Bottom
         : $((pos_y = HEIGHT - YAD_HEIGHT - BAR_HEIGHT - BORDER_SIZE))
+        : $((pos_y = HEIGHT - YAD_HEIGHT - BAR_HEIGHT - BORDER_SIZE))
     else #Top
         : $((pos_y = BAR_HEIGHT + BORDER_SIZE))
     fi
 
+
     yad --calendar --undecorated --fixed --close-on-unfocus --no-buttons \
-        --width="$YAD_WIDTH" --height="$YAD_HEIGHT" --posx="$pos_x" --posy="$pos_y" \
-        --title="yad-calendar" --borders=0 >/dev/null &
+        --width="$YAD_WIDTH" --height="$YAD_HEIGHT" --posx="$DEFAULT_POS_X" \
+        --posy="$DEFAULT_POS_Y" --title="yad-calendar" --borders=0 >/dev/null &
     ;;
 *)
     echo "$DATE"

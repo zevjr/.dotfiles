@@ -19,7 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'nvim-lua/plenary.nvim' " don't forget to add this one if you don't have it yet!
   Plug 'ThePrimeagen/harpoon'
-
+  Plug 'mihaifm/bufstop'
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
@@ -92,7 +92,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'reedes/vim-pencil' " Soft or Hard Word Wrapping - :SoftPencil
   Plug 'junegunn/goyo.vim' " Distraction free - :Goyo
   Plug 'godlygeek/tabular' " Align tables - :Tabularize
-
+  Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
