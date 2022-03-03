@@ -4,6 +4,7 @@ source $HOME/.config/nvim/plug-config/coc/coc.vim
 source $HOME/.config/nvim/plug-config/coc/coc-extensions.vim
 source $HOME/.config/nvim/maps.vim
 source $HOME/.config/nvim/default.vim
+source $HOME/.config/nvim/config.lua
 
 syntax on
 filetype plugin indent on
@@ -20,28 +21,18 @@ let g:gruvbox_material_background = 'hard' " Same but for -material alt
 let g:gruvbox_invert_selection='0'         " Don't invert selection
 let g:gruvbox_italic=1
 let g:gruvbox_termcolors=16
-let g:airline_theme = 'gruvbox_material'
-let python_highlight_all = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
+
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_statusline_ontop = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#ale#enabled = 0
-let g:airline#extensions#virtualenv#enabled = 0
-let g:airline#extensions#coc#enabled = 0
+
+let python_highlight_all = 1
 let g:indentLine_enabled = 1    " Enables indentline plugin
 let g:indentLine_concealcursor = 0
 let g:indentLine_char = '┆'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_faster = 1
 
-let g:poetv_executables = ['poetry']
-
-let g:sneak#label = 1
-
+let g:isort_command = 'isort'
+let g:black_fast = 1
 
 " BASIC CONFIG
 
