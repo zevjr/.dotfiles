@@ -12,14 +12,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 DISABLE_MAGIC_FUNCTIONS=true
-export ZSH="/home/zejr/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="awesomepanda"
 ZSH_THEME="powerlevel10k/powerlevel10k"
+export ZSH=$HOME/.oh-my-zsh
+export DOTFILES=$HOME/.dotfiles
+source $HOME/.secrets.sh
+source $ZSH/oh-my-zsh.sh
+source $DOTFILES/zsh/.zsh_profile
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -81,9 +79,6 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting python)
 
-source $HOME/.secrets.sh
-source $ZSH/oh-my-zsh.sh
-source $HOME/.zsh_profile
 
 # User configuration
 
@@ -124,3 +119,5 @@ export PATH="$NPM_PACKAGES/bin:$PATH"
 # command
 unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+# source /opt/powerlevel10k/powerlevel10k.zsh-theme
+# source /home/linuxbrew/.linuxbrew/opt/powerlevel10k/powerlevel10k.zsh-theme

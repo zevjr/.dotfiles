@@ -1,6 +1,6 @@
+@theme "onedark"
 configuration {
     modi: "window,drun,ssh,combi";
-    theme: "onedark";
     font: "hack 15";
     show-icons: true;
     display-window: "Window";

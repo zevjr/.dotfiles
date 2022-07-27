@@ -22,7 +22,7 @@ source "/home/zejr/.oh-my-zsh/custom/plugins/fzf-zsh"
 source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh
+source "/opt/asdf-vm/asdf.sh"
 
 
 bindkey -s '^n' 'fzf_nvim \n' 
@@ -38,22 +38,28 @@ autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-
 
 alias rr="source ~/.zshrc"
 alias ls="exa --icons -s type"
-alias fd="fdfind"
 alias mv="mv -i"
 alias calc="speedcrunch"
 alias gph="git push origin"
 alias cat="bat --paging=never"
 alias xclip='xclip -selection c'
-alias cspt="kill -9 $(pidof spotifyd)"
-alias joplin="~/.joplin-bin/bin/joplin"
-alias archi="./Downloads/Archi/Archi &"
-alias globo="sudo sh ~/global_protect/install.sh"
-alias self="GIT_SSH_COMMAND='ssh -i /home/zejr/.ssh/self'"
 alias senha="echo '$SENHA_MESTRA' | tr -d '\n' | xclip && keepassxc &"
 alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
-alias ospt="./Works/OpenSource/spotifyd/target/release/spotifyd && spt"
-alias vpn="sudo openvpn  --config /home/zejr/Documentos/certifications/facily.ovpn"
-alias pg_start="sudo service postgresql start && sudo update-rc.d postgresql enable"
+alias joplin="~/.joplin-bin/bin/joplin"
+# alias cspt="kill -9 $(pidof spotifyd)"
+# alias archi="./Downloads/Archi/Archi &"
+# alias globo="sudo sh ~/global_protect/install.sh"
+# alias self="GIT_SSH_COMMAND='ssh -i /home/zejr/.ssh/self'"
+# alias ospt="./Works/OpenSource/spotifyd/target/release/spotifyd && spt"
+# alias vpn="sudo openvpn  --config /home/zejr/Documentos/certifications/facily.ovpn"
+# alias pg_start="sudo service postgresql start && sudo update-rc.d postgresql enable"
+
+alias cdvim="cd ~/.dotfiles/nvim/.config/nvim"
+alias cdi3="cd ~/.dotfiles/i3/.config/i3"
+alias cdpoly="cd ~/.dotfiles/polybar/.config/polybar"
+alias cdzsh="cd ~/.dotfiles/zsh"
+
+# alias fd="fdfind"
 # alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
 
 

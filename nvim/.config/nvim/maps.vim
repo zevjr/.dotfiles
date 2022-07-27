@@ -1,5 +1,6 @@
 let mapleader = " "
 
+map <F3> :noh<CR>
 map <F8> :TagbarToggle<CR>
 nmap <F6> <Plug>MarkdownPreview
 nmap <F7> <Plug>MarkdownPreviewStop
@@ -11,18 +12,27 @@ nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 noremap m $
 noremap z ^
-noremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap J :m .+1<CR>==
+nnoremap K :m .-2<CR>==
+inoremap J <Esc>:m .+1<CR>==gi
+inoremap K <Esc>:m .-2<CR>==gi
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap <silent> tt :t.<CR>
+vnoremap <silent> tt :t.<CR>
 
 nnoremap <silent> <leader>? :LvimHelper<CR>
 nnoremap <silent> <leader>p :Rg<CR>
 nnoremap <silent> <leader>f :Ag<CR>
+nnoremap <silent> <leader>e viw
+nmap <leader><Enter> !!zsh<CR>
+nmap <leader>( ysiw(
+nmap <leader>[ ysiw[
+nmap <leader>{ ysiw{
+nmap <leader>" ysiw"
+nmap <leader>' ysiw'
 
-nnoremap <silent> <leader>\ :CocCommand explorer <CR>
+nnoremap <silent> <leader>\ :NERDTreeFind <CR>
 nnoremap <silent> <leader>i :Isort <CR>
 nnoremap <silent> <leader>I :Black <CR>
 
@@ -37,8 +47,6 @@ vnoremap <silent> <Left> <nop>
 vnoremap <silent> <Up> <nop>
 vnoremap <silent> <Down> <nop>
 nnoremap <silent> <C-z> <nop>
-nnoremap <silent> <leader>t :t.<CR>
-vnoremap <silent> <leader>t :t.<CR>
 
 nnoremap <leader>v :BufstopFast<cr>
 nnoremap <leader>V :Bufstop<cr>

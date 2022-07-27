@@ -11,50 +11,92 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-surround'
+    Plug 'rcarriga/nvim-notify'
 
-  Plug 'vim-airline/vim-airline'
+    Plug 'gruvbox-community/gruvbox'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'folke/trouble.nvim'
 
-  Plug 'williamboman/nvim-lsp-installer'
-  Plug 'neovim/nvim-lspconfig/'
-  Plug 'tamago324/nlsp-settings.nvim'
-  Plug 'rcarriga/nvim-notify'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'folke/lua-dev.nvim'
+    Plug 'Yggdroot/indentLine'
+    Plug 'tpope/vim-fugitive'
+    Plug 'akinsho/toggleterm.nvim'
+    Plug 'windwp/nvim-autopairs'
 
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
+    Plug 'lvim-tech/lvim-helper'
 
-  Plug 'gruvbox-community/gruvbox'
-  Plug 'ThePrimeagen/harpoon'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'folke/trouble.nvim'
+    Plug 'jose-elias-alvarez/null-ls.nvim'
+    Plug 'ThePrimeagen/refactoring.nvim'
+    Plug 'ThePrimeagen/harpoon'
 
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'thinca/vim-fontzoom'
 
-  Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Yggdroot/indentLine'
-  Plug 'tpope/vim-fugitive'
-  Plug 'stsewd/isort.nvim'
-  Plug 'akinsho/toggleterm.nvim'
-  Plug 'windwp/nvim-autopairs'
+    Plug 'preservim/tagbar'
 
-  Plug 'hashivim/vim-terraform'
-  Plug 'psf/black', { 'branch': 'stable' }
-  Plug 'ap/vim-buftabline'
+    " nerdtree
+    Plug 'preservim/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'PhilRunninger/nerdtree-visual-selection'
 
-  Plug 'lvim-tech/lvim-helper'
+    "Themes
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 
-  Plug 'ixru/nvim-markdown'
 
-  Plug 'jose-elias-alvarez/null-ls.nvim'
-  Plug 'ThePrimeagen/refactoring.nvim'
+    """ head of open files in vim 
+    Plug 'ap/vim-buftabline'
+
+    """ fzf
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
+
+    """ lSP
+    Plug 'williamboman/nvim-lsp-installer'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'tamago324/nlsp-settings.nvim'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/nvim-cmp'
+
+
+    """ Neovim Tree shitter
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/playground'
+    Plug 'romgrk/nvim-treesitter-context'
+
+    """COC
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+    """ Lua
+    Plug 'folke/lua-dev.nvim'
+
+    """ Typescript
+    Plug 'pangloss/vim-javascript'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'peitalin/vim-jsx-typescript'
+
+    """ Prettier
+    Plug 'sbdchd/neoformat'
+
+    """ Python
+    Plug 'psf/black', { 'branch': 'stable' }
+    Plug 'stsewd/isort.nvim'
+    Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+
+    """ Markdown
+    " Plug 'ixru/nvim-markdown'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+    """ Terraform
+    Plug 'hashivim/vim-terraform'
+    
+    """ Copilot
+    Plug 'github/copilot.vim'
 
 call plug#end()
 
