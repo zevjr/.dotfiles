@@ -17,3 +17,4 @@ __pycache__/
 nvim/.config/nvim/plugged/*
 polybar/.config/polybar/scripts/weather/secrets.py
 .tool-versions
+tags
