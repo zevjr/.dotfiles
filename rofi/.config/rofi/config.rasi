@@ -1,4 +1,4 @@
-@theme "onedark"
+@theme "rounded-nord-dark"
 configuration {
     modi: "window,drun,ssh,combi";
     font: "hack 15";

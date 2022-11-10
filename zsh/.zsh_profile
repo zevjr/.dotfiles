@@ -25,7 +25,7 @@ source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-
 source "/opt/asdf-vm/asdf.sh"
 
 
-bindkey -s '^n' 'fzf_nvim \n' 
+bindkey -s '^n' 'fzf_nvim \n'
 bindkey -s '^f' 'cd $(fd . "/home/zejr" --type directory | fzf )\n'
 zle -N znt-history-widget
 bindkey '^R' znt-history-widget
@@ -46,6 +46,7 @@ alias xclip='xclip -selection c'
 alias senha="echo '$SENHA_MESTRA' | tr -d '\n' | xclip && keepassxc &"
 alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
 alias joplin="~/.joplin-bin/bin/joplin"
+alias battery="upower -i $(upower -e | grep BAT) | grep --color=never -E 'percentage'"
 # alias cspt="kill -9 $(pidof spotifyd)"
 # alias archi="./Downloads/Archi/Archi &"
 # alias globo="sudo sh ~/global_protect/install.sh"

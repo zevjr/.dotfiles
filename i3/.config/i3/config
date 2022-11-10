@@ -1,7 +1,7 @@
 exec xrandr --output eDP-1 --off
 exec xrandr --output DP-2 --rotate left
 exec xrandr --output DP-2 --rotate right
-exec feh --bg-fill ~/Imagens/wallpaper/wall4.webp ~/Imagens/wallpaper/wall5.jpg
+exec feh --bg-fill ~/Imagens/wallpaper/wall7.jpg ~/Imagens/wallpaper/wall5.jpg
 exec "setxkbmap -layout us -variant intl"
 
 exec_always picom -f
@@ -121,7 +121,7 @@ bindsym $mod+a focus parent
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+a exec i3lock -c 000000 -p win -e -f
+bindsym $mod+Shift+a exec $HOME/.config/i3/lock.sh
 
 # #---Letter Key Bindings---# #
 bindsym $mod+Shift+q kill

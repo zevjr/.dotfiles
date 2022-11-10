@@ -38,5 +38,5 @@ require'compe'.setup {
     luasnip = true;
   };
 }
-inoremap("<C-Space>", "compe#complete()")
+-- inoremap("<C-G>", compe#complete())
 -- inoremap("<CR>", require"compe".confirm(require'nvim-autopairs'))
