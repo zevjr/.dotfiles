@@ -14,7 +14,7 @@ nnoremap("<C-f>", function()
     require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})
 end)
 nnoremap("<C-p>", function()
-    require('telescope.builtin').find_files({ hidden = true })
+    require('telescope.builtin').find_files({ hidden = true})
 end)
 
 nnoremap("<leader>pb", function()

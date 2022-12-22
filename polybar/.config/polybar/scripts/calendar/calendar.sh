@@ -7,7 +7,7 @@ YAD_WIDTH=460  # 222 is minimum possible value
 YAD_HEIGHT=400 # 193 is minimum possible value
 DEFAULT_POS_X=1000
 DEFAULT_POS_Y=00
-DATE="$(date +"%a, %d %B %H:%M")"
+DATE="$(TZ="America/Sao_Paulo" date +"%a, %d %B %H:%M")"
 
 case "$1" in
 --popup)

@@ -106,12 +106,6 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting python)
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/zejr/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/zejr/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/zejr/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/zejr/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 export NPM_PACKAGES="/home/zejr/.npm-packages"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules${NODE_PATH:+:$NODE_PATH}"
 export PATH="$NPM_PACKAGES/bin:$PATH"
@@ -121,3 +115,9 @@ unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 # source /opt/powerlevel10k/powerlevel10k.zsh-theme
 # source /home/linuxbrew/.linuxbrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/zejr/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/zejr/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/zejr/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/zejr/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

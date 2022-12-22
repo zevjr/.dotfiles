@@ -47,6 +47,7 @@ alias senha="echo '$SENHA_MESTRA' | tr -d '\n' | xclip && keepassxc &"
 alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
 alias joplin="~/.joplin-bin/bin/joplin"
 alias battery="upower -i $(upower -e | grep BAT) | grep --color=never -E 'percentage'"
+alias lz="lazygit"
 # alias cspt="kill -9 $(pidof spotifyd)"
 # alias archi="./Downloads/Archi/Archi &"
 # alias globo="sudo sh ~/global_protect/install.sh"

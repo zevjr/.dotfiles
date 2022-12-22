@@ -7,6 +7,7 @@ return require("packer").startup(function()
     use("nvim-lua/plenary.nvim")
     use("nvim-lua/popup.nvim")
     use("nvim-telescope/telescope.nvim")
+    use("sindrets/diffview.nvim")
 
         -- Colorscheme section
     use("gruvbox-community/gruvbox")
@@ -51,5 +52,9 @@ return require("packer").startup(function()
     use("folke/trouble.nvim")
 
     use("ThePrimeagen/git-worktree.nvim")
+
+    use("diepm/vim-rest-console")
+
+    use("mbbill/undotree")
 end)
 
