@@ -1,12 +1,11 @@
 local Remap = require("zejr.keymap")
-local Scripts = require("zejr.scripts")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
 local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
-local select_inner_chars = Scripts.select_inner_chars
+scripts = require("zejr.scripts")
 
 nmap("<F3>",":noh<CR>")
 nmap("<F8>",":TagbarToggle<CR>")
@@ -84,9 +83,6 @@ nnoremap("<leader>h", "<c-w>h")
 nnoremap("<leader>j", "<c-w>j")
 nnoremap("<leader>k", "<c-w>k")
 nnoremap("<leader>l", "<c-w>l")
-nnoremap('<leader>v', select_inner_chars, { silent = true })
-
-
 
 inoremap("/", "/\v")
 vnoremap("<", "<gv")
@@ -94,3 +90,6 @@ vnoremap(">", ">gv")
 xnoremap("<leader>p", "\"_dP")
 nnoremap("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 nnoremap("<leader>u", ":UndotreeToggle<CR>")
+
+nnoremap("<leader>v", function() scripts.select_inner_chars("s") end)
+nnoremap("<leader>vc", function() scripts.select_inner_chars("c") end)
