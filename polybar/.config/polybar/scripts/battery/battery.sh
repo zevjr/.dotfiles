@@ -39,6 +39,8 @@
 #     FORMAT="$FORMAT$ICON ${CHARGE:0:2}% %{B- F-}"
 # fi
 
-FORMAT=$(upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage" | grep -i percentage | awk '{print $2}')
+FORMAT=$(upower -i $(upower -e | grep BAT) | grep --color=never -E 'percentage' | awk '{print $2}')
+CHARGE=$(upower -i $(upower -e | grep BAT) | grep --color=never -E 'state' | awk '{print $2}')
 # Final formatted output.
+
 echo $FORMAT

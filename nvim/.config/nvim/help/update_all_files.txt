@@ -1,0 +1,4 @@
+:gr foo **/*.js # buscar e abre todos os arquivos com a palavra foo
+:cdo s/foo/bar/gc # Substitui todas as palavras foo por bar nos files abertos
+                  # o `c` faz com que ele pergunte em um a um, qual subtituir
+:cfdo up # caso o update seja feito sem o `c`, essa opção atualiza todos de uma só vez.

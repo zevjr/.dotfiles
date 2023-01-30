@@ -56,5 +56,6 @@ return require("packer").startup(function()
     use("diepm/vim-rest-console")
 
     use("mbbill/undotree")
+    use("f-person/git-blame.nvim")
 end)
 

@@ -16,7 +16,7 @@ export PYTHONBREAKPOINT="ipdb.set_trace"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_DEFAULT_OPTS="--extended --height 40% --layout=reverse-list --border"
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
 
 source "/home/zejr/.oh-my-zsh/custom/plugins/fzf-zsh"
 source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
@@ -39,7 +39,7 @@ autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-
 alias rr="source ~/.zshrc"
 alias ls="exa --icons -s type"
 alias mv="mv -i"
-alias calc="speedcrunch"
+alias calc="kalker"
 alias gph="git push origin"
 alias cat="bat --paging=never"
 alias xclip='xclip -selection c'
