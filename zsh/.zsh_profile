@@ -3,51 +3,49 @@ NPM_PACKAGES="${HOME}/.npm-packages"
 
 export GIT_EDITOR="$VIM"
 export PYENV_ROOT="${HOME}/.pyenv"
-export PATH="$PATH:$NPM_PACKAGES/bin"
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 export GOPATH="$HOME/go"
 export BAT_THEME="TwoDark"
-export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.pyenv/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export PYTHONBREAKPOINT="ipdb.set_trace"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_DEFAULT_OPTS="--extended --height 40% --layout=reverse-list --border"
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
 
-source "/home/zejr/.oh-my-zsh/custom/plugins/fzf-zsh"
-source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
-source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "/home/zejr/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "/opt/asdf-vm/asdf.sh"
+# source "/home/zejr/.oh-my-zsh/custom/plugins/fzf-zsh"
+source "$HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+source "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# source "/opt/asdf-vm/asdf.sh"
+
+source $ZSH/oh-my-zsh.sh
 
 
 bindkey -s '^n' 'fzf_nvim \n'
-bindkey -s '^f' 'cd $(fd . "/home/zejr" --type directory | fzf )\n'
-zle -N znt-history-widget
-bindkey '^R' znt-history-widget
+bindkey -s '^f' 'cd $(fd . "/Users/ZeJr" --type directory | fzf )\n'
+# zle -N znt-history-widget
+bindkey '^s' znt-history-widget
+# bindkey -s '^l' 'clear\n'
 setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
-fpath=( "$fpath[@]" "$HOME/.config/znt/zsh-navigation-tools" )
+# fpath=( "$fpath[@]" "$HOME/.config/znt/zsh-navigation-tools" )
 zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
-autoload znt-usetty-wrapper znt-history-widget znt-cd-widget znt-kill-widget
-autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-list-input n-options n-panelize n-help
+# autoload znt-usetty-wrapper znt-history-widget znt-cd-widget znt-kill-widget
+# autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-list-input n-options n-panelize n-help
 
 
+# alias ff='cd $(fd . "/Users/ZeJr" --type directory | fzf )'
 alias rr="source ~/.zshrc"
 alias ls="exa --icons -s type"
 alias mv="mv -i"
-alias calc="kalker"
-alias gph="git push origin"
+alias codesecrets="sh /Users/ZeJr/Works/B4Bits/get_code_secrets.sh"
+# alias calc="kalker"
+# alias gph="git push origin"
 alias cat="bat --paging=never"
-alias xclip='xclip -selection c'
-alias senha="echo '$SENHA_MESTRA' | tr -d '\n' | xclip && keepassxc &"
-alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
-alias joplin="~/.joplin-bin/bin/joplin"
-alias battery="upower -i $(upower -e | grep BAT) | grep --color=never -E 'percentage'"
+# alias xclip='xclip -selection c'
+# alias senha="echo '$SENHA_MESTRA' | tr -d '\n' | xclip && keepassxc &"
+# alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
+# alias joplin="~/.joplin-bin/bin/joplin"
 alias lz="lazygit"
+# alias battery="upower -i $(upower -e | grep BAT) | grep --color=never -E 'percentage'"
 # alias cspt="kill -9 $(pidof spotifyd)"
 # alias archi="./Downloads/Archi/Archi &"
 # alias globo="sudo sh ~/global_protect/install.sh"
@@ -64,12 +62,29 @@ alias cdzsh="cd ~/.dotfiles/zsh"
 # alias fd="fdfind"
 # alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
 
-
 fzf_nvim(){
     nvim $(ag --files-with-matches --hidden --path-to-ignore ~/.ignore -g "" | fzf --preview "bat --color=always --style=numbers {}")
 }
 
 gpl(){
-    git fetch && git pull origin $1
+    git fetch && git pull origin $(git branch --show-current)
 }
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+gpp(){
+    git push origin $(git branch --show-current)
+}
+
+gppn(){
+    git push origin $(git branch --show-current) --no-verify
+}
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+eval $(/usr/local/bin/brew shellenv)
+# Set custom prompt
+PROMPT="%(?:%{$fg_bold[green]%}➜:%{$fg_bold[red]%}➜)"
+PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} '
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"

@@ -1,17 +1,11 @@
-require("nvim-tree").setup()
+-- require("nvim-tree").setup()
 
 -- OR setup with some options
 require("nvim-tree").setup({
+  -- on_attach = on_attach,
   sort_by = "case_sensitive",
   view = {
     adaptive_size = true,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-        { key = "_", action = "hsplit" },
-        { key = "|", action = "vsplit" },
-      },
-    },
   },
   update_focused_file = {
     enable = true,

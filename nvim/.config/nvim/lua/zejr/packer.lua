@@ -57,5 +57,7 @@ return require("packer").startup(function()
 
     use("mbbill/undotree")
     use("f-person/git-blame.nvim")
+    use("catppuccin/nvim")
 end)
+
 
