@@ -1,14 +1,17 @@
 # USE `fc-list : family style`, for list all fonts
+import:
+  /Users/ZeJr/.dotfiles/alacritty/.config/alacritty/catppuccin/catppuccin-mocha.yml
+
 font:
-  size: 14.0
+  size: 17.0
   normal:
-    family: Hermit
+    family: "Hack Nerd Font"
     style: Regular
   bold:
-    family: Hermit
+    family: "Hack Nerd Font"
     style: Bold
   italic:
-    family: Hermit
+    family: "Hack Nerd Font"
     style: Italic
 
 # custom_cursor_colors: true
@@ -51,13 +54,19 @@ font:
 
 # background_opacity: 0.80
 window:
+  # padding:
+  #   x: 15
+  #   y: 10
+
   opacity: 0.80
+  # decorations: buttonless
 
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
 # When set to `true`, selected text will be copied to the primary clipboard.
 #save_to_clipboard: false
+draw_bold_text_with_bright_colors: true
 
 cursor:
   style: Beam
@@ -68,12 +77,17 @@ cursor:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
+env:
+  TERM: xterm-256color
+  SHELL: /usr/local/bin/zsh
 
 shell:
-  program: /usr/bin/zsh
-  args:
-    - -c
-    - "tmux"
+ program: /usr/local/bin/zsh
+ args:
+ - -c
+ - source ~/.zshrc
+
+
 # key_bindings:
 #   # remove the line below!
 #   - { key: W, mods: Command, action: Quit }

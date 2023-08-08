@@ -8,6 +8,20 @@ dap.adapters.node2 = {
     command = '/home/zejr/.asdf/shims/node',
     args = {home .. '/personal/microsoft-sucks/vscode-node-debug2/out/src/nodeDebug.js'},
 }
+dap.adapters['pwa-node'] = {
+  type = 'server',
+  host = '127.0.0.1',
+  port = 9229,
+}
+dap.configurations.javascript = {
+    {
+    type = "pwa-node",
+    request = "launch",
+    name = "Launch Program",
+    program = "${workspaceFolder}/${file}",
+    debugServer = 45635
+    }
+}
 
 dap.configurations.typescript = {
     {
