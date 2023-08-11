@@ -1,0 +1,132 @@
+require "helpers/globals"
+
+local dap = require('dap')
+local dapui = require('dapui')
+local Remap = require("helpers/keyboard")
+
+local nnoremap = Remap.nnoremap
+
+dapui.setup({
+  icons = { expanded = '▾', collapsed = '▸' },
+  mappings = {
+    expand = { '<CR>', '<2-LeftMouse>' },
+    open = 'o',
+    remove = 'd',
+    edit = 'e',
+    repl = 'r',
+    toggle = 't',
+  },
+})
+
+dap.listeners.after.event_initialized['dapui_config'] = function()
+  cmd('tabfirst|tabnext')
+  dapui.open()
+end
+
+nnoremap('<leader>di', ':lua require(\'dap\').toggle_breakpoint()<CR>')
+nnoremap('<Leader>dI', ':lua require(\'dap\').set_breakpoint(vim.fn.input(\'Breakpoint condition: \'))<CR>')
+nnoremap('<Leader>dp', ':lua require(\'dap\').set_breakpoint(nil, nil, vim.fn.input(\'Log point message: \'))<CR>')
+nnoremap('<Leader>ds', ':lua require(\'dap\').continue()<CR>')
+nnoremap('<Leader>dl', ':lua require(\'dap\').run_to_cursor()<CR>')
+nnoremap('<Leader>dS', ':lua require(\'dap\').disconnect()<CR>')
+nnoremap('<Leader>dn', ':lua require(\'dap\').step_over()<CR>')
+nnoremap('<Leader>dN', ':lua require(\'dap\').step_into()<CR>')
+nnoremap('<Leader>do', ':lua require(\'dap\').step_out()<CR>')
+
+nnoremap('<Leader>dww', ':lua require(\'dapui\').toggle()<CR>')
+nnoremap('<Leader>dw[', ':lua require(\'dapui\').toggle(1)<CR>')
+nnoremap('<Leader>dw]', ':lua require(\'dapui\').toggle(2)<CR>')
+
+require('dap-vscode-js').setup({
+    debugger_path = fn.stdpath('data') .. '/mason/packages/js-debug-adapter',
+    debugger_cmd = { 'js-debug-adapter' },
+    adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
+})
+
+
+-- language config
+local custom_adapter = 'pwa-node-custom'
+dap.adapters[custom_adapter] = function(cb, config)
+    if config.preLaunchTask then
+        local async = require('plenary.async')
+        local notify = require('notify').async
+
+        async.run(function()
+            ---@diagnostic disable-next-line: missing-parameter
+            notify('Running [' .. config.preLaunchTask .. ']').events.close()
+        end, function()
+            fn.system(config.preLaunchTask)
+            config.type = 'pwa-node'
+            dap.run(config)
+        end)
+    end
+end
+
+for _, language in ipairs({ 'typescript', 'javascript' }) do
+    dap.configurations[language] = {
+        {
+            name = 'Launch',
+            type = 'pwa-node',
+            request = 'launch',
+            program = '${file}',
+            rootPath = '${workspaceFolder}',
+            cwd = '${workspaceFolder}',
+            sourceMaps = true,
+            skipFiles = { '<node_internals>/**' },
+            protocol = 'inspector',
+            console = 'integratedTerminal',
+        },
+        {
+            name = 'Attach to node process',
+            type = 'pwa-node',
+            request = 'attach',
+            rootPath = '${workspaceFolder}',
+            processId = require('dap.utils').pick_process,
+        },
+        {
+            name = 'Debug Main Process (Electron)',
+            type = 'pwa-node',
+            request = 'launch',
+            program = '${workspaceFolder}/node_modules/.bin/electron',
+            args = {
+                '${workspaceFolder}/dist/index.js',
+            },
+            outFiles = {
+                '${workspaceFolder}/dist/*.js',
+            },
+            resolveSourceMapLocations = {
+                '${workspaceFolder}/dist/**/*.js',
+                '${workspaceFolder}/dist/*.js',
+            },
+            rootPath = '${workspaceFolder}',
+            cwd = '${workspaceFolder}',
+            sourceMaps = true,
+            skipFiles = { '<node_internals>/**' },
+            protocol = 'inspector',
+            console = 'integratedTerminal',
+        },
+        {
+            name = 'Compile & Debug Main Process (Electron)',
+            type = custom_adapter,
+            request = 'launch',
+            preLaunchTask = 'npm run build-ts',
+            program = '${workspaceFolder}/node_modules/.bin/electron',
+            args = {
+                '${workspaceFolder}/dist/index.js',
+            },
+            outFiles = {
+                '${workspaceFolder}/dist/*.js',
+            },
+            resolveSourceMapLocations = {
+                '${workspaceFolder}/dist/**/*.js',
+                '${workspaceFolder}/dist/*.js',
+            },
+            rootPath = '${workspaceFolder}',
+            cwd = '${workspaceFolder}',
+            sourceMaps = true,
+            skipFiles = { '<node_internals>/**' },
+            protocol = 'inspector',
+            console = 'integratedTerminal',
+        },
+    }
+end
