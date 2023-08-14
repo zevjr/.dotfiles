@@ -1,10 +1,9 @@
-require "helpers/globals"
+require("helpers/globals")
 
 local Remap = require("helpers/keyboard")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
-local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
 local scripts = require("helpers/scripts")
@@ -31,7 +30,7 @@ vnoremap("tt", ":t.<CR>")
 
 nnoremap("<leader>e", "viw")
 nmap("<leader><Enter>", "!!zsh<CR>")
-nmap('<Home>', ':TroubleToggle<CR>')
+nmap("<Home>", ":TroubleToggle<CR>")
 
 nnoremap("Q", "<nop>")
 nnoremap("<Right>", "<nop>")
@@ -51,9 +50,9 @@ nnoremap("<leader>rp", ":resize 100<CR>")
 nnoremap("<leader>y", '"+y')
 vnoremap("<leader>y", '"+y')
 nnoremap("<leader>Y", "y$")
-nnoremap("p", '\"_dP')
-vnoremap("p", '\"_dP')
-nnoremap("dd", "\"_dd")
+nnoremap("p", '"_dP')
+vnoremap("p", '"_dP')
+nnoremap("dd", '"_dd')
 vnoremap("<leader>r", ":'<,'>!python3<CR>")
 
 nnoremap("n", "nzzzv")
@@ -66,7 +65,7 @@ vnoremap("[", "s[<ESC>pa]<ESC>")
 vnoremap("{", "s{<ESC>pa}<ESC>")
 
 inoremap('"', '""<left>')
-inoremap("'" , "''<left>")
+inoremap("'", "''<left>")
 inoremap("(", "()<left>")
 inoremap("[", "[]<left>")
 inoremap("{", "{}<left>")
@@ -78,27 +77,26 @@ nnoremap("<leader>j", "<c-w>j")
 nnoremap("<leader>k", "<c-w>k")
 nnoremap("<leader>l", "<c-w>l")
 
-
 vnoremap("<", "<gv")
 vnoremap(">", ">gv")
 nnoremap("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 nnoremap("U", "<C-r>")
 
 nnoremap("<leader>v", function()
-    scripts.select_inner_chars("s")
+	scripts.select_inner_chars("s")
 end)
 nnoremap("<leader>vc", function()
-    scripts.select_inner_chars("c")
+	scripts.select_inner_chars("c")
 end)
 
 --[[ Telescope ]]
 nnoremap("<C-f>", function()
-    require('telescope.builtin').grep_string({
-        search = fn.input("Grep For > ")
-    })
+	require("telescope.builtin").grep_string({
+		search = fn.input("Grep For > "),
+	})
 end)
 nnoremap("<C-p>", function()
-    require('telescope.builtin').find_files({
-        hidden = true
-    })
+	require("telescope.builtin").find_files({
+		hidden = true,
+	})
 end)
