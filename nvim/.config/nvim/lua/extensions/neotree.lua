@@ -15,11 +15,12 @@ neotree.setup({
             ["<cr>"] = "open",
             ["-"] = "open_split",
             ["|"] = "open_vsplit",
-        }
+        },
     },
     filesystem = {
       filtered_items = {
         visible = true,
+        never_show = { "__pycache__", "node_modules", ".cache", ".DS_Store" },
       },
       follow_current_file = {
           enable = true,

@@ -94,7 +94,7 @@ return {
   -- Trouble {{{
   {
     "folke/trouble.nvim",
-    lazy = true,
+    lazy = false,
     dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require("extensions.trouble")
@@ -226,6 +226,13 @@ return {
     config = function()
       require("extensions.neodev")
     end,
+  },
+  --}}}
+
+  --Copilot {{{
+  {
+    "github/copilot.vim",
+    lazy = false,
   },
   --}}}
 }
