@@ -1,6 +1,20 @@
 sudo pacman -Syu &&
 sudo pacman -S alacritty &&
 sudo pacman -S $(pacman -Sgq nerd-fonts) &&
-sudo pacman -S stow zsh curl tmux lua neovim &&
+sudo pacman -S stow zsh curl tmux lua neovim rustup nodejs npm python-poetry go rofi jq &&
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &&
-git clone https://github.com/catppuccin/alacritty.git ~/.config/alacritty/catppuccin
+git clone https://github.com/catppuccin/alacritty.git ~/.config/alacritty/catppuccin &&
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1 &&
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k &&
+git clone https://github.com/jeffreytse/zsh-vi-mode \
+  $ZSH_CUSTOM/plugins/zsh-vi-mode &&
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm &&
+rustup deafult stable &&
+cargo install exa bat &&
+
+
+
+# for install google-chrome
+# https://www.edivaldobrito.com.br/google-chrome-no-arch-com-git/

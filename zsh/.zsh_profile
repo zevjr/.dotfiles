@@ -17,8 +17,6 @@ source "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.
 source "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 # source "/opt/asdf-vm/asdf.sh"
 
-source $ZSH/oh-my-zsh.sh
-
 
 bindkey -s '^n' 'fzf_nvim \n'
 bindkey -s '^f' 'cd $(fd . "/Users/ZeJr" --type directory | fzf )\n'
@@ -77,9 +75,7 @@ gpp(){
 gppn(){
     git push origin $(git branch --show-current) --no-verify
 }
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-eval $(/usr/local/bin/brew shellenv)
 # Set custom prompt
 PROMPT="%(?:%{$fg_bold[green]%}➜:%{$fg_bold[red]%}➜)"
 PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} '
