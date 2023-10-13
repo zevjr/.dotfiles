@@ -1,0 +1,6 @@
+sudo pacman -Syu &&
+sudo pacman -S alacritty &&
+sudo pacman -S $(pacman -Sgq nerd-fonts) &&
+sudo pacman -S stow zsh curl tmux lua neovim &&
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &&
+git clone https://github.com/catppuccin/alacritty.git ~/.config/alacritty/catppuccin
