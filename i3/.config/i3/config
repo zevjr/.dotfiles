@@ -10,6 +10,7 @@ exec "setxkbmap -layout us -variant intl"
 
 
 exec --no-startup-id dex --autostart --environment i3
+exec_always --no-startup-id picom  -b --config $HOME/.config/picom/picom.conf
 exec --no-startup-id nm-applet
 
 
@@ -49,6 +50,14 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+a exec $HOME/.config/i3/lock.sh
 
 bindsym $mod+Shift+q kill
+
+# Screenshots
+bindsym Ctrl+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+
+## Clipboard Screenshots
+bindsym Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -98,10 +107,10 @@ bindsym $mod+Shift+0	move container to workspace $ws10
 
 mode "resize" {
 
-        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym l resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym ccedilla resize grow width 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym h resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
