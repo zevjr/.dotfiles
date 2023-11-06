@@ -125,11 +125,15 @@ nnoremap("<C-p>", function()
   })
 end)
 
-nnoremap("rep", [[:%s/"https:\/\/sqs.us-eas.*"/""/g <CR>}]])
+nnoremap("<leader>a", ":lua require('rest-nvim').run()<CR>")
+nnoremap("<leader>A", ":lua require('rest-nvim').run(true)<CR>")
 
-nnoremap("<leader>di", ':lua require("dap").toggle_breakpoint()<CR>')
-nnoremap("<leader>ds", ':lua require("dap").continue()<CR>')
-nnoremap("<leader>dl", ':lua require("dap").run_to_cursor()<CR>')
-nnoremap("<leader>dS", ':lua require("dap").disconnect()<CR>')
-nnoremap("<leader>dww", ':lua require("dapui").toggle()<CR>')
-vnoremap("<leader>k", ':lua require("dapui").eval()<CR>')
+
+-- nnoremap("rep", [[:%s/"https:\/\/sqs.us-eas.*"/""/g <CR>}]])
+--
+-- nnoremap("<leader>di", ':lua require("dap").toggle_breakpoint()<CR>')
+-- nnoremap("<leader>ds", ':lua require("dap").continue()<CR>')
+-- nnoremap("<leader>dl", ':lua require("dap").run_to_cursor()<CR>')
+-- nnoremap("<leader>dS", ':lua require("dap").disconnect()<CR>')
+-- nnoremap("<leader>dww", ':lua require("dapui").toggle()<CR>')
+-- vnoremap("<leader>k", ':lua require("dapui").eval()<CR>')

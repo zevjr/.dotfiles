@@ -39,7 +39,7 @@ return {
   -- Telescope {{{
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.1",
+    tag = "0.1.4",
     lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -150,11 +150,11 @@ return {
       require("extensions.dap")
     end,
   },
-  {
-    "microsoft/vscode-js-debug",
-    lazy = true,
-    build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
-  },
+  -- {
+  --   "microsoft/vscode-js-debug",
+  --   lazy = true,
+  --   build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+  -- },
 
   --}}}
 
@@ -235,6 +235,34 @@ return {
     lazy = false,
   },
   --}}}
+
+  --Rest  {{{
+  {
+    'rest-nvim/rest.nvim',
+    config = function()
+      require("extensions.rest")
+    end,
+  },
+  --}}}
+
+  {
+  'kristijanhusak/vim-dadbod-ui',
+  dependencies = {
+    { 'tpope/vim-dadbod', lazy = true },
+    { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+    { 'tpope/vim-dotenv' },
+    { 'hrsh7th/nvim-compe' },
+  },
+  cmd = {
+    'DBUI',
+    'DBUIToggle',
+    'DBUIAddConnection',
+    'DBUIFindBuffer',
+  },
+  init = function()
+    require('extensions.dadbod')
+  end,
+  }
 }
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0

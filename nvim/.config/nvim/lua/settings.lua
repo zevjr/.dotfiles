@@ -11,6 +11,8 @@ cmd[[filetype plugin on]]
 
 -- Disable comments on pressing Enter
 cmd[[autocmd FileType * setlocal formatoptions-=cro]]
+cmd[[autocmd BufWritePost,BufEnter * set nofoldenable foldmethod=manual foldlevelstart=99]]
+cmd[[:set autoread]]
 
 g.mapleader = ' '
 
@@ -26,10 +28,6 @@ opt.relativenumber = true
 -- Clipboard {{{
 opt.clipboard = 'unnamedplus' -- Use system clipboard
 opt.fixeol = false -- Turn off appending new line in the end of a file
--- }}}
-
--- Folding {{{
-opt.foldmethod = 'syntax'
 -- }}}
 
 -- Search {{{

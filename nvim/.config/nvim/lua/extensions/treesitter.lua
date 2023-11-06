@@ -12,6 +12,8 @@ require'nvim-treesitter.configs'.setup {
     "javascript",
     "go",
     "python",
+    "http",
+    "json"
   },
 
   -- Install all parsers synchronously

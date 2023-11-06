@@ -1,3 +1,4 @@
+v = vim.v;
 cmd = vim.cmd; -- Command function
 api = vim.api; -- Neovim API
 lsp = vim.lsp; -- LSP API
