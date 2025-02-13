@@ -1,0 +1,56 @@
+# USE `fc-list : family style`, for list all fonts
+import:
+  - ~/.dotfiles/alacritty/.config/alacritty/catppuccin/catppuccin-mocha.yml
+
+font:
+  size: 14.0
+  normal:
+    family: "Hack Nerd Font"
+    style: Regular
+  bold:
+    family: "Hack Nerd Font"
+    style: Bold
+  italic:
+    family: "Hack Nerd Font"
+    style: Italic
+
+  offset:
+    x: 0
+    y: 1
+
+custom_cursor_colors: true
+hide_cursor_when_typing: true
+live_config_reload: true
+
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0
+  color: '0xffffff'
+
+window:
+  title: Alacritty
+  padding:
+    x: 6
+    y: 2
+
+  opacity: 0.80
+  decorations: full
+
+  class:
+    instance: Alacritty
+    general: Alacritty
+
+
+save_to_clipboard: true
+draw_bold_text_with_bright_colors: true
+
+cursor:
+  style: Beam
+  hide_when_typing: false
+
+env:
+  TERM: xterm-256color
+
+shell:
+ program: /usr/bin/tmux
+

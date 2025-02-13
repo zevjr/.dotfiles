@@ -2,12 +2,15 @@ VIM="nvim"
 NPM_PACKAGES="${HOME}/.npm-packages"
 
 export GIT_EDITOR="$VIM"
+export EDITOR="$VIM"
+export DOCKER_HOST=unix:///var/run/docker.sock
 export PYENV_ROOT="${HOME}/.pyenv"
 export GOPATH="$HOME/go"
 export BAT_THEME="TwoDark"
 export XDG_CONFIG_HOME="$HOME/.config"
 export PYTHONBREAKPOINT="ipdb.set_trace"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export OPENAI_API_KEY="cole sua chave aqui"
 export FZF_DEFAULT_OPTS="--extended --height 40% --layout=reverse-list --border"
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
 
@@ -17,11 +20,10 @@ source "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.
 source "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 # source "/opt/asdf-vm/asdf.sh"
 
-source $ZSH/oh-my-zsh.sh
 
-
-bindkey -s '^n' 'fzf_nvim \n'
-bindkey -s '^f' 'cd $(fd . "/Users/ZeJr" --type directory | fzf )\n'
+# bindkey -s '^n' 'fzf_nvim \n'
+bindkey -s '^n' 'clear\n'
+bindkey -s '^f' 'cd $(fd . "${HOME}" --type directory | fzf )\n'
 # zle -N znt-history-widget
 bindkey '^s' znt-history-widget
 # bindkey -s '^l' 'clear\n'
@@ -36,28 +38,32 @@ zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
 alias rr="source ~/.zshrc"
 alias ls="exa --icons -s type"
 alias mv="mv -i"
-alias codesecrets="sh /Users/ZeJr/Works/B4Bits/get_code_secrets.sh"
-# alias calc="kalker"
-# alias gph="git push origin"
+alias lz="lazygit"
 alias cat="bat --paging=never"
-# alias xclip='xclip -selection c'
+alias xclip='xclip -selection clipboard'
+alias vpn="sudo openvpn --config ~/openvpn/file.ovpn --auth-user-pass ~/openvpn/credentials --data-ciphers 'AES-128-CBC'"
+
+alias cdvim="cd ~/.dotfiles/nvim/.config/nvim"
+alias cdi3="cd ~/.dotfiles/i3/.config/i3"
+alias cdpoly="cd ~/.dotfiles/polybar/.config/polybar"
+alias cdzsh="cd ~/.dotfiles/zsh"
+alias mecanizou='cd ~/Works/Mecanizou'
+alias openapi='cd ~/Works/OpenApi'
+# alias agro='cd ~/Works/AgroBrasil'
 # alias senha="echo '$SENHA_MESTRA' | tr -d '\n' | xclip && keepassxc &"
 # alias nkill=n-kill noptions=n-options npanelize=n-panelize nhelp=n-help
 # alias joplin="~/.joplin-bin/bin/joplin"
-alias lz="lazygit"
 # alias battery="upower -i $(upower -e | grep BAT) | grep --color=never -E 'percentage'"
 # alias cspt="kill -9 $(pidof spotifyd)"
 # alias archi="./Downloads/Archi/Archi &"
 # alias globo="sudo sh ~/global_protect/install.sh"
 # alias self="GIT_SSH_COMMAND='ssh -i /home/zejr/.ssh/self'"
 # alias ospt="./Works/OpenSource/spotifyd/target/release/spotifyd && spt"
-# alias vpn="sudo openvpn  --config /home/zejr/Documentos/certifications/facily.ovpn"
 # alias pg_start="sudo service postgresql start && sudo update-rc.d postgresql enable"
 
-alias cdvim="cd ~/.dotfiles/nvim/.config/nvim"
-alias cdi3="cd ~/.dotfiles/i3/.config/i3"
-alias cdpoly="cd ~/.dotfiles/polybar/.config/polybar"
-alias cdzsh="cd ~/.dotfiles/zsh"
+# alias codesecrets="sh /Users/ZeJr/Works/B4Bits/get_code_secrets.sh"
+# alias calc="kalker"
+# alias gph="git push origin"
 
 # alias fd="fdfind"
 # alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
@@ -77,9 +83,27 @@ gpp(){
 gppn(){
     git push origin $(git branch --show-current) --no-verify
 }
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-eval $(/usr/local/bin/brew shellenv)
+audio(){
+  if [ "$1" = "mic" ]; then
+    echo "audio atual: $(pactl get-default-source) \n"
+    pactl list short sources | awk '{ print $1, $2}'
+  else 
+    echo "audio atual: $(pactl get-default-sink) \n"
+    pactl list short sinks | awk '{ print $1, $2}'
+  fi
+}
+setaudio(){
+  if [ "$1" = "mic" ]; then
+    pactl set-default-source "$2" 
+    pactl get-default-source
+  else 
+    pactl set-default-sink "$1" 
+    pactl get-default-sink
+  fi
+    
+}
+
 # Set custom prompt
 PROMPT="%(?:%{$fg_bold[green]%}➜:%{$fg_bold[red]%}➜)"
 PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} '

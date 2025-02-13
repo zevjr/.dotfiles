@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "tree-sitter": "^0.22.1",
+    "tree-sitter-yaml": "^0.5.0"
+  }
+}

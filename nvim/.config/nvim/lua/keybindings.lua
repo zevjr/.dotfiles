@@ -1,0 +1,160 @@
+require("helpers/globals")
+
+local Remap = require("helpers/keyboard")
+local nnoremap = Remap.nnoremap
+local vnoremap = Remap.vnoremap
+local inoremap = Remap.inoremap
+local xnoremap = Remap.xnoremap
+local nmap = Remap.nmap
+
+local scripts = require("helpers/scripts")
+
+nmap("<F10>", ":noh<CR>")
+nnoremap("<leader>to", ":Neotree toggle reveal <CR>")
+nnoremap("<leader>n", ":Neotree toggle show buffers right <CR>")
+nnoremap("<leader>wa", ":wa <cr>")
+
+nnoremap("<C-t>", ":ToggleTerm<CR>")
+
+nnoremap("<Tab>", [[:bn<CR>]])
+nnoremap("<S-Tab>", [[:bp<CR>]])
+nnoremap("m", "$")
+vnoremap("m", "$h")
+nnoremap("Z", "^")
+vnoremap("Z", "^")
+nnoremap("K", ":m .-2<CR>==")
+vnoremap("K", ":m '<-2<CR>gv=gv")
+nnoremap("J", ":m .+1<CR>==")
+vnoremap("J", ":m '>+1<CR>gv=gv")
+nnoremap("tt", ":t.<CR>")
+vnoremap("tt", ":t.<CR>")
+
+nnoremap("<leader>e", "viw")
+nmap("<leader><Enter>", "!!zsh<CR>")
+nmap("<Home>", "<cmd>Trouble diagnostics toggle<cr>")
+
+nnoremap("Q", "<nop>")
+nnoremap("<Right>", "<nop>")
+nnoremap("<Left>", "<nop>")
+vnoremap("<Right>", "<nop>")
+vnoremap("<Left>", "<nop>")
+vnoremap("<Up>", "<nop>")
+vnoremap("<Down>", "<nop>")
+nnoremap("<C-z>", "<nop>")
+
+nnoremap("<leader>q", ":qa <cr>")
+nnoremap("<leader>Q", ":qa! <cr>")
+nnoremap("<leader>x", ":bufdo bd <cr>")
+nnoremap("<leader>xa", ":bufdo %bd | e# <cr>")
+nnoremap("+", ":vertical resize +5<CR>==")
+nnoremap("-", ":vertical resize -5<CR>==")
+nnoremap("<leader>rp", ":resize 100<CR>")
+nnoremap("<leader>y", '"+y')
+vnoremap("<leader>y", '"+y')
+nnoremap("<leader>Y", "y$")
+vnoremap("p", '"_dP')
+nnoremap("dd", '"_dd')
+vnoremap("<leader>r", ":'<,'>!python3<CR>")
+
+nnoremap("n", "nzzzv")
+nnoremap("N", "Nzzzv")
+
+vnoremap('"', 's"<ESC>pa"<ESC>')
+vnoremap("'", "s'<ESC>pa'<ESC>")
+vnoremap("`", "s`<ESC>pa`<ESC>")
+vnoremap("(", "s(<ESC>pa)<ESC>")
+vnoremap("[", "s[<ESC>pa]<ESC>")
+vnoremap("{", "s{<ESC>pa}<ESC>")
+
+inoremap('"', '""<left>')
+inoremap("'", "''<left>")
+inoremap("(", "()<left>")
+inoremap("[", "[]<left>")
+inoremap("{", "{}<left>")
+inoremap("{<CR>", "{<CR>}<ESC>O<TAB>")
+inoremap("{;<CR>", "{<CR>};<ESC>O<TAB>")
+
+nnoremap("<leader>h", "<c-w>h")
+nnoremap("<leader>j", "<c-w>j")
+nnoremap("<leader>k", "<c-w>k")
+nnoremap("<leader>l", "<c-w>l")
+
+vnoremap("<", "<gv")
+vnoremap(">", ">gv")
+nnoremap("U", "<C-r>")
+nnoremap("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+nnoremap("<leader>gb", [[:Gitsigns toggle_current_line_blame <cr>]])
+
+nnoremap("<leader>f", [[<cmd>lua vim.lsp.buf.format() <cr>]])
+
+-- vnoremap("<leader>f", [[<cmd>lua vim.lsp.buf.range_formatting() <cr>]])
+-- vnoremap("<leader>f", function()
+--   vim.lsp.buf.format({
+--     async = true,
+--     range = {
+--       ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+--       ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+--     }
+--   })
+-- end)
+
+function FormatFunction()
+	lsp.buf.format({
+		range = {
+			["start"] = api.nvim_buf_get_mark(0, "<"),
+			["end"] = api.nvim_buf_get_mark(0, ">"),
+		},
+	})
+end
+vnoremap("<leader>f", "<Esc><cmd>lua FormatFunction()<cr>")
+
+nnoremap("<leader>v", function()
+	scripts.select_inner_chars("s")
+end)
+nnoremap("<leader>vc", function()
+	scripts.select_inner_chars("c")
+end)
+
+--[[ Telescope ]]
+nnoremap("<C-f>", function()
+	require("telescope.builtin").grep_string({
+		search = fn.input("Grep For > "),
+	})
+end)
+nnoremap("<C-p>", function()
+	require("telescope.builtin").find_files({
+		hidden = true,
+	})
+end)
+
+-- nnoremap("<leader>a", ":lua require('rest-nvim').run()<CR>")
+-- nnoremap("<leader>A", ":lua require('rest-nvim').run(true)<CR>")
+
+-- [[ LSP Refactor]]
+
+nnoremap("gD", vim.lsp.buf.declaration, { buffer = 0 })
+nnoremap("gT", vim.lsp.buf.type_definition, { buffer = 0 })
+nnoremap("gK", vim.lsp.buf.hover, { buffer = 0 })
+
+-- vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = 0 })
+
+nnoremap("<leader>rn", vim.lsp.buf.rename, { buffer = 0 })
+nnoremap("<leader>ca", vim.lsp.buf.code_action, { buffer = 0 })
+
+-- [[ Refactoring ]]
+xnoremap("<leader>re", ":Refactor extract")
+xnoremap("<leader>rf", ":Refactor extract_to_file")
+xnoremap("<leader>rv", ":Refactor extract_var")
+
+xnoremap("<leader>ri", ":Refactor inline_var")
+nnoremap("<leader>ri", ":Refactor inline_var")
+
+nnoremap("<leader>rI", ":Refactor inline_func")
+nnoremap("<leader>rb", ":Refactor extract_block")
+nnoremap("<leader>rbf", ":Refactor extract_block_to_file")
+
+-- [[ Replace with strings ]]
+
+vnoremap("<leader>rs", function()
+	scripts.convert_camel_case()
+end)

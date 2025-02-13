@@ -1,0 +1,9 @@
+{
+    "workspace.library": [
+        "/Users/ZeJr/.local/share/nvim/lazy/neodev.nvim/types/nightly",
+        "/usr/local/share/nvim/runtime/lua",
+        "/Users/ZeJr/.local/share/nvim/lazy/nvim-dap-ui/lua",
+        "/Users/ZeJr/.dotfiles/nvim/.config/nvim/lua",
+        "${3rd}/luv/library"
+    ]
+}
